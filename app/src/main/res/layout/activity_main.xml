@@ -33,7 +33,7 @@
         <Button
             android:id="@+id/btn_plus_minus"
             style="@style/calc_button"
-            android:text="∓" />
+            android:text="CE" />
 
         <Button
             android:id="@+id/btn_persent"

@@ -9,9 +9,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private double firstNumber = 0;
+    private double secondNumber = 0;
+    boolean add, sub, mul, div, percnt;
+    float res1, res2;
+
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final TextView screen = findViewById(R.id.textViewNumb);
@@ -32,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         Button multip = findViewById(R.id.btnMultip);
         Button division = findViewById(R.id.btn_division);
         Button plusMinus = findViewById(R.id.btn_plus_minus);
-        Button percent = findViewById(R.id.btn_persent);
+        final Button percent = findViewById(R.id.btn_persent);
         Button clear = findViewById(R.id.btn_reset);
 
-        View.OnClickListener calculatorListener = new View.OnClickListener() {
+        final View.OnClickListener calculatorListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int id = v.getId();
@@ -71,31 +77,87 @@ public class MainActivity extends AppCompatActivity {
                         screen.append("9");
                         break;
                     case R.id.btn_dot:
-
-                        break;
-                    case R.id.btnPlus:
                         screen.append(".");
                         break;
+                    case R.id.btnPlus:
+                   if(screen==null){
+                       screen.setText("");
+                   } else {
+                       res1=Float.parseFloat(screen.getText()+"");
+                       add = true;
+                       screen.setText(null);
+                   }
+                        break;
                     case R.id.btnMinus:
-
+                        if(screen==null){
+                            screen.setText("");
+                        } else {
+                            res1 = Float.parseFloat(screen.getText() + "");
+                            sub = true;
+                            screen.setText(null);
+                        }
                         break;
                     case R.id.btn_equally:
-
+                        res2=Float.parseFloat(screen.getText()+"");
+                        if(add==true){
+                            screen.setText(res1+res2+"");
+                            add=false;
+                        }
+                        if(sub==true){
+                            screen.setText(res1-res2+"");
+                            sub=false;
+                        }
+                        if(mul==true){
+                            screen.setText(res1*res2+"");
+                            mul=false;
+                        }
+                        if(div==true){
+                            screen.setText(res1/res2+"");
+                            div=false;
+                        }
+                        if(percnt==true){
+                            screen.setText((res1*res2)/100+"");
+                            percnt=false;
+                        }
                         break;
-
                     case R.id.btnMultip:
-
+                        if(screen==null){
+                            screen.setText("");
+                        } else {
+                            res1 = Float.parseFloat(screen.getText() + "");
+                            mul = true;
+                            screen.setText(null);
+                        }
                         break;
                     case R.id.btn_division:
-
+                        if(screen==null){
+                            screen.setText("");
+                        } else {
+                            res1 = Float.parseFloat(screen.getText() + "");
+                            div = true;
+                            screen.setText(null);
+                        }
                         break;
                     case R.id.btn_plus_minus:
-
+                        String displayElements = screen.getText().toString();
+                        int length = displayElements.length();
+                        if(length>0){
+                            displayElements = displayElements.substring(0, length-1);
+                            screen.setText(displayElements);
+                        }
                         break;
                     case R.id.btn_persent:
-
+                        if(screen==null){
+                            screen.setText("");
+                        } else {
+                            res1=Float.parseFloat(screen.getText()+"");
+                            percnt = true;
+                            screen.setText(null);
+                        }
                         break;
-
+                    case R.id.btn_reset:
+                        screen.setText("");
+                        break;
 
                 }
             }
@@ -120,14 +182,6 @@ public class MainActivity extends AppCompatActivity {
         plusMinus.setOnClickListener(calculatorListener);
         percent.setOnClickListener(calculatorListener);
         clear.setOnClickListener(calculatorListener);
-
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                screen.setText("");
-                }
-            
-        });
 
     }
 }
