@@ -14,7 +14,7 @@
         <item name="android:layout_margin">1dp</item>
         <item name="android:background">@color/colorGreyBack</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">25dp</item>
+        <item name="android:textSize">25sp</item>
         <item name="android:layout_weight">0.25</item>
     </style>
 
@@ -25,7 +25,7 @@
         <item name="android:background">@color/colorOrangeBack</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/colorTextOnOrange</item>
-        <item name="android:textSize">25dp</item>
+        <item name="android:textSize">25sp</item>
         <item name="android:layout_weight">0.25</item>
     </style>
 </resources>
